@@ -1,5 +1,7 @@
 package isp.lab3.exercise1;
 
+import isp.lab3.exercise3.Vehicle;
+
 public class Tree {
     private int  height;
     public  Tree()
@@ -16,14 +18,14 @@ public class Tree {
     public String toString() {
         return "Tree height: " + height;
     }
-    public static void main()
-    {
-        Tree myTree = new Tree();
-        System.out.println("Initial tree height: " + myTree.toString());
+    public static void main(String[] args) {
+
+            Tree myTree = new Tree();
+        System.out.println("Initial tree height: "+myTree.toString());
         myTree.grow(5);
-        System.out.println("Updated tree height: " + myTree.toString());
+        System.out.println("Updated tree height: "+myTree.toString());
+
+
     }
-
-
 }
 

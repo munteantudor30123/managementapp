@@ -1,5 +1,7 @@
 package isp.lab3.exercise2;
 
+import isp.lab3.exercise3.Vehicle;
+
 public class Rectangle {
 
     private int lenght;
@@ -38,20 +40,20 @@ public class Rectangle {
         return 2 * (lenght + width);
     }
 
-    // Method to calculate area
     public int getArea() {
         return lenght * width;
     }
-    public static void main()
-    {
-        Rectangle rectangle1 = new Rectangle();
-        System.out.println("Rectangle 1 - Length: " + rectangle1.getLength() +
-                ", Width: " + rectangle1.getWidth() +
-                ", Color: " + rectangle1.getColor() +
-                ", Perimeter: " + rectangle1.getPerimeter() +
-                ", Area: " + rectangle1.getArea());
+    public static void main(String[] args) {
 
-    }
+        {
+            Rectangle rectangle1 = new Rectangle();
+            System.out.println("Rectangle 1 - Length: " + rectangle1.getLength() +
+                    ", Width: " + rectangle1.getWidth() +
+                    ", Color: " + rectangle1.getColor() +
+                    ", Perimeter: " + rectangle1.getPerimeter() +
+                    ", Area: " + rectangle1.getArea());
 
-}
+        }
+
+    }}
 
