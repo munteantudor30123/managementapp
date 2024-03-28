@@ -1,9 +1,9 @@
 package isp.lab5.exercise2;
 
-public class SmartPhone {
+public class SmartPhone implements Chargeable {
 
     private  int batteryLevel;
-    private  SmartPhone(int batteryLevel)
+    SmartPhone(int batteryLevel)
     {
         this.batteryLevel=batteryLevel;
     }

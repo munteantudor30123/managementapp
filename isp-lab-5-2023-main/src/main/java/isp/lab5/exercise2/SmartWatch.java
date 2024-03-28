@@ -1,9 +1,9 @@
 package isp.lab5.exercise2;
 
-public class SmartWatch {
+public class SmartWatch implements Chargeable{
 
     private  int batteryLevel;
-    private  SmartWatch(int batteryLevel)
+    SmartWatch(int batteryLevel)
     {
         this.batteryLevel=batteryLevel;
     }

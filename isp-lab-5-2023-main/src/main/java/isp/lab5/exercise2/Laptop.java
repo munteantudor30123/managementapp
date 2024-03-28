@@ -1,8 +1,8 @@
 package isp.lab5.exercise2;
 
-public class Laptop {
+public class Laptop implements Chargeable{
     private  int batteryLevel;
-    private  Laptop(int batteryLevel)
+    Laptop(int batteryLevel)
     {
         this.batteryLevel=batteryLevel;
     }
