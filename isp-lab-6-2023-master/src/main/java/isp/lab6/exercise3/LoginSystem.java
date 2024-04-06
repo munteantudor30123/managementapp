@@ -23,6 +23,27 @@ public class LoginSystem {
                 })
                 .orElse(false);
     }
+    public boolean logout(String username) {
+        if (store.getSessions(username) != null) {
+            store.removeSession(username);
+            return true;
+        }
+        return false;
+    }
+    public boolean register(String username, String password) {
+        if (username == null || password == null) {
+            return false;
+        }
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return false; // Username already taken
+            }
+        }
+
+        User newUser = new User(username, password);
+        users.add(newUser);
+        return true;
+    }
 
 
 }
