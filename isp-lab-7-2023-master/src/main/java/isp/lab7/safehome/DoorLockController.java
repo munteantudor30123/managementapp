@@ -14,11 +14,47 @@ import java.util.Map;
 public class DoorLockController implements ControllerInterface {
     private Map<Tenant, AccessKey> validAccess = new HashMap<>();
 
-    @Override
-    public DoorStatus enterPin(String pin) throws Exception {
-        throw new OperationNotSupportedException("Not implemented yet!");
+    private int failedAttempts = 0;
+    private static final int MAX_FAILED_ATTEMPTS = 3;
+    private boolean tooManyAttempts() {
+        failedAttempts++;
+
+        if (failedAttempts >= MAX_FAILED_ATTEMPTS) {
+            return true;
+        }
+
+        return false;
+    }
+    private boolean isValidPin(String pin) {
+        for (AccessKey accessKey : validAccess.values()) {
+            if (accessKey.getPin().equals(pin)) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    @Override
+    public DoorStatus enterPin(String pin) throws TooManyAttemptsException {
+        if (tooManyAttempts()) {
+            throw new TooManyAttemptsException("Too many failed attempts! Access denied.");
+        }
+
+        if (isValidPin(pin)) {
+            return DoorStatus.OPEN;
+        } else {
+
+            return DoorStatus.CLOSE;
+        }
+    }
+    @Override
+    public DoorStatus validPin(String pin) throws InvalidPinException{
+        if(!isValidPin(pin))
+        {
+            throw new InvalidPinException("Too many failed attempts! Access denied.");
+        }
+        return DoorStatus.CLOSE;
+    }
     @Override
     public void addTenant(String pin, String name) throws Exception {
         AccessKey accessKey = new AccessKey(pin);
@@ -48,5 +84,8 @@ public class DoorLockController implements ControllerInterface {
         int accessLogs = 0;
         return new ArrayList<>(accessLogs);
     }
+
+
+
 
 }

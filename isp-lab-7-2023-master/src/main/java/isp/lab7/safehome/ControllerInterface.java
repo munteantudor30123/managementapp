@@ -41,4 +41,8 @@ public interface ControllerInterface {
      * @throws Exception
      */
     void removeTenant(String name) throws Exception;
+
+    DoorStatus validPin(String pin) throws Exception;
+
+
 }
