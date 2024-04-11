@@ -35,7 +35,7 @@ public class DoorLockController implements ControllerInterface {
     }
 
     @Override
-    public DoorStatus enterPin(String pin) throws TooManyAttemptsException {
+    public DoorStatus enterPin(String pin) throws Exception {
         if (tooManyAttempts()) {
             throw new TooManyAttemptsException("Too many failed attempts! Access denied.");
         }
@@ -48,7 +48,7 @@ public class DoorLockController implements ControllerInterface {
         }
     }
     @Override
-    public DoorStatus validPin(String pin) throws InvalidPinException{
+    public DoorStatus validPin(String pin) throws Exception{
         if(!isValidPin(pin))
         {
             throw new InvalidPinException("Too many failed attempts! Access denied.");
@@ -56,7 +56,7 @@ public class DoorLockController implements ControllerInterface {
         return DoorStatus.CLOSE;
     }
     @Override
-    public void addTenant(String pin, String name) throws Exception {
+    public void addTenant(String pin, String name) throws Exeception{
         AccessKey accessKey = new AccessKey(pin);
         Tenant tenant = new Tenant(name);
 
@@ -76,7 +76,7 @@ public class DoorLockController implements ControllerInterface {
             System.out.println("Removed tenant: " + name);
             accessLogs.add(new AccessLog(name, LocalDateTime.now(), "Remove Tenant", DoorStatus.OPEN, null));
         } else {
-            throw new TenantAlreadyExistsException(name);
+            throw new TenantNotFoundException(name);
         }
     }
 
